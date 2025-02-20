@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Churn Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">                      
+                        <div class="transparent-box">
+                        <h2 class="text-center">Customer Churn Prediction</h2>
+                       
+                        <form action="/predict" method="post" class="form-background">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" class="form-control" name="name" required>
+                                    </div>                                  
+                                    
+                                    <div class="form-group">
+                                        <label for="tenure">Tenure (Months):</label>
+                                        <input type="number" class="form-control" name="tenure" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="MonthlyCharges">Monthly Charges:</label>
+                                        <input type="number" class="form-control" name="MonthlyCharges" step="0.01" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="TotalCharges">Total Charges:</label>
+                                        <input type="number" class="form-control" name="TotalCharges" step="0.01" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">Gender:</label>
+                                        <select class="form-control" name="gender" required>
+                                            <option value="Female">Female</option>
+                                            <option value="Male">Male</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Partner">Partner:</label>
+                                        <select class="form-control" name="Partner" required>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Dependents">Dependents:</label>
+                                        <select class="form-control" name="Dependents" required>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="SeniorCitizen">Senior Citizen:</label>
+                                        <select class="form-control" name="SeniorCitizen" required>
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PhoneService">Phone Service:</label>
+                                        <select class="form-control" name="PhoneService" required>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="MultipleLines">Multiple Lines:</label>
+                                        <select class="form-control" name="MultipleLines" required>
+                                            <option value="No">No</option>
+                                            <option value="No phone service">No phone service</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="InternetService">Internet Service:</label>
+                                        <select class="form-control" name="InternetService" required>
+                                            <option value="DSL">DSL</option>
+                                            <option value="Fiber optic">Fiber optic</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Contract">Contract Type:</label>
+                                        <select class="form-control" name="Contract" required>
+                                            <option value="Month-to-month">Month-to-month</option>
+                                            <option value="One year">One year</option>
+                                            <option value="Two year">Two year</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PaperlessBilling">Paperless Billing:</label>
+                                        <select class="form-control" name="PaperlessBilling" required>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="PaymentMethod">Payment Method:</label>
+                                        <select class="form-control" name="PaymentMethod" required>
+                                            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                                            <option value="Credit card (automatic)">Credit card (automatic)</option>
+                                            <option value="Electronic check">Electronic check</option>
+                                            <option value="Mailed check">Mailed check</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+                        </form>
+                        
+                        {% if prediction %}
+                        <div class="alert alert-info mt-3 text-center">
+                            <strong>Prediction:</strong> {{ prediction }}
+                        </div>
+
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
